@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Traffic Management System | Academic Prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Simulated Demo Notice Banner -->
+  <aside class="demo-banner" role="note" aria-label="Simulated Demo Notice">
+    <div class="banner-content">
+      <span class="banner-badge">SIMULATED DEMO</span>
+      <p class="banner-text">
+        <strong>Notice:</strong> All traffic values, vehicle speeds, delays, and corridor statuses shown on this dashboard are 
+        <strong>SIMULATED DEMO DATA</strong> for demonstration purposes. This system does not connect to live traffic sensors, cameras, or real-time GPS feeds.
+      </p>
+    </div>
+  </aside>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🚦</div>
+        <div>
+          <h1 class="brand-title">Smart Traffic Management System</h1>
+          <p class="brand-subtitle">Corridor Traffic Monitoring & Simulation Prototype</p>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#summary-cards" class="nav-link">Network Overview</a></li>
+          <li><a href="#corridors" class="nav-link">Corridor Status</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <!-- Operations Console Header -->
+    <section class="section console-section" aria-labelledby="console-heading">
+      <div class="console-card">
+        <div class="console-header-wrap">
+          <div>
+            <h2 id="console-heading">Corridor Traffic Status Console</h2>
+            <p class="console-subtext">
+              Demonstration interface displaying illustrative traffic statuses, average vehicular speeds, and simulated congestion levels across sample urban corridors.
+            </p>
+          </div>
+          <div class="console-status-pill" title="System operating with simulated demo data">
+            <span class="pulse-dot" aria-hidden="true">●</span> Simulation Mode Active
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Traffic Summary Cards Section -->
+    <section id="summary-cards" class="section" aria-labelledby="summary-heading">
+      <div class="section-title-wrap">
+        <h2 id="summary-heading">Network Overview</h2>
+        <span class="simulated-tag" title="These statistics are calculated from mock data">Simulated Sample Metrics</span>
+      </div>
+
+      <div class="card-grid">
+        <!-- Card 1: Total Corridors -->
+        <article class="stat-card" aria-label="Total Monitored Corridors">
+          <div class="stat-card-header">
+            <span class="stat-title">Total Monitored Corridors</span>
+            <span class="stat-icon" aria-hidden="true">🛣️</span>
+          </div>
+          <div class="stat-value" id="cardTotalCorridors">8</div>
+          <p class="stat-description">Sample arterial corridors modeled in this prototype dataset.</p>
+          <div class="stat-footer-badge">Monitored Routes: 8</div>
+        </article>
+
+        <!-- Card 2: Congested Corridors -->
+        <article class="stat-card stat-card-warning" aria-label="Congested Corridors">
+          <div class="stat-card-header">
+            <span class="stat-title">High Congestion Corridors</span>
+            <span class="stat-icon" aria-hidden="true">⚠️</span>
+          </div>
+          <div class="stat-value text-danger" id="cardCongestedCount">3</div>
+          <p class="stat-description">Corridors currently categorized with heavy simulated slowdowns and higher delays.</p>
+          <div class="stat-footer-badge badge-warning">Simulated Status: Heavy</div>
+        </article>
+
+        <!-- Card 3: Average Network Speed -->
+        <article class="stat-card stat-card-info" aria-label="Average Network Speed">
+          <div class="stat-card-header">
+            <span class="stat-title">Average Flow Speed</span>
+            <span class="stat-icon" aria-hidden="true">⚡</span>
+          </div>
+          <div class="stat-value text-info" id="cardAvgSpeed">35.4 km/h</div>
+          <p class="stat-description">Average simulated vehicular speed calculated across all sample corridors.</p>
+          <div class="stat-footer-badge badge-info">Calculated from Mock Data</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Corridor Traffic Status Table & Filter Section -->
+    <section id="corridors" class="section" aria-labelledby="table-heading">
+      <div class="table-card">
+        <div class="table-header-bar">
+          <div>
+            <h2 id="table-heading">Corridor Traffic Status Log</h2>
+            <p class="table-subtitle">Illustrative sample records representing city sectors (Simulated Data)</p>
+          </div>
+
+          <!-- Interactive Filter Control -->
+          <div class="filter-group">
+            <label for="statusFilter" class="filter-label">Filter by Status:</label>
+            <select id="statusFilter" class="filter-select" aria-label="Filter corridors by traffic status">
+              <option value="all">All Statuses (Show All)</option>
+              <option value="Clear">Clear (Smooth Flow)</option>
+              <option value="Moderate">Moderate (Medium Traffic)</option>
+              <option value="Heavy">Heavy (Congested)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter Results Counter & Reset Action -->
+        <div class="filter-info-row">
+          <span id="recordCountBadge" class="record-counter">Showing 8 of 8 corridors</span>
+          <button type="button" id="resetFilterBtn" class="btn-text" style="display: none;">Reset Filter</button>
+        </div>
+
+        <!-- Accessible Data Table -->
+        <div class="table-responsive">
+          <table class="traffic-table" aria-describedby="table-heading">
+            <thead>
+              <tr>
+                <th scope="col">Corridor Name</th>
+                <th scope="col">Sector / Zone</th>
+                <th scope="col">Traffic Status</th>
+                <th scope="col">Avg Speed</th>
+                <th scope="col">Estimated Delay</th>
+                <th scope="col">Sample Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="trafficTableBody">
+              <!-- Dynamically populated via script.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State Message (shown if no records match) -->
+        <div id="emptyState" class="empty-state" style="display: none;" role="status">
+          <p>No traffic corridors found matching the selected status filter.</p>
+        </div>
+
+        <div class="table-footer-note">
+          <span class="info-dot" aria-hidden="true">ℹ️</span>
+          <span>Status thresholds: <span class="legend-badge legend-clear">Clear</span> (≥ 45 km/h), 
+          <span class="legend-badge legend-moderate">Moderate</span> (25–44 km/h), 
+          <span class="legend-badge legend-heavy">Heavy</span> (< 25 km/h). Demo sample values.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <p class="footer-title">Smart Traffic Management System (STMS)</p>
+        <p class="footer-desc">
+          Academic Traffic Monitoring & Simulation Prototype
+        </p>
+      </div>
+      <div class="footer-right">
+        <p class="footer-disclaimer">
+          <strong>Demonstration Notice:</strong> All road metrics, speeds, and traffic conditions displayed are simulated demo data. This prototype is for demonstration purposes and does not provide real-time navigation or actual traffic routing.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
