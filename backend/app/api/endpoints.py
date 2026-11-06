@@ -46,7 +46,7 @@ def list_traffic_observations(
     status: Optional[str] = Query(None, description="Filter by status (Clear, Moderate, Heavy)"),
     start_time: Optional[str] = Query(None, description="ISO-8601 start timestamp (e.g. 2026-10-18T08:00:00)"),
     end_time: Optional[str] = Query(None, description="ISO-8601 end timestamp (e.g. 2026-10-18T20:00:00)"),
-    limit: int = Query(100, ge=1, le=500, description="Max observation records to return")
+    limit: int = Query(500, ge=1, le=500, description="Max observation records to return")
 ):
     """
     Returns filtered traffic observation records. Supports junction, status, and time range filters.

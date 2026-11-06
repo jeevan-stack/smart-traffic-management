@@ -139,7 +139,7 @@ def filter_traffic(
     status: Optional[str] = None,
     start_time: Optional[str] = None,
     end_time: Optional[str] = None,
-    limit: int = 100
+    limit: int = 500
 ) -> Dict[str, Any]:
     """Applies filters to the observation dataframe."""
     df = get_df()

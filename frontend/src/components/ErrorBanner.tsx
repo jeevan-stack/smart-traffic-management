@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 interface ErrorBannerProps {
   message: string;
@@ -10,7 +10,7 @@ export const ErrorBanner: React.FC<ErrorBannerProps> = ({ message, onRetry }) =>
     <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6 rounded-r-lg shadow-sm" role="alert">
       <div className="flex items-start justify-between flex-wrap gap-2">
         <div className="flex items-start gap-3">
-          <span className="text-xl" aria-hidden="true">⚠️</span>
+          <span className="text-xl" aria-hidden="true">!</span>
           <div>
             <h4 className="text-sm font-bold text-amber-900">
               Backend Connection Notice
@@ -19,8 +19,11 @@ export const ErrorBanner: React.FC<ErrorBannerProps> = ({ message, onRetry }) =>
               {message}
             </p>
             <p className="text-xs text-amber-700 mt-2 font-mono bg-amber-100/70 p-2 rounded">
-              Tip: Start the backend by running: <br/>
-              <code className="text-amber-900 font-bold">backend\.venv\Scripts\uvicorn.exe backend.app.main:app --reload --port 8000</code>
+              Tip: Start the backend from the project root using:
+              <br />
+              <code className="text-amber-900 font-bold">
+                python -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8001
+              </code>
             </p>
           </div>
         </div>

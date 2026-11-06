@@ -14,7 +14,7 @@ import type {
   RouteCompareResponse
 } from '../types/traffic';
 
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = 'http://127.0.0.1:8001/api';
 
 /**
  * Custom error class capturing HTTP status code and details.
@@ -57,7 +57,7 @@ async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
     if (error instanceof ApiError) {
       throw error;
     }
-    throw new ApiError('Unable to connect to FastAPI backend. Is the server running on port 8000?', 0);
+    throw new ApiError('Unable to connect to FastAPI backend. Is the server running on port 8001?', 0);
   }
 }
 
